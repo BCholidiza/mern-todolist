@@ -34,4 +34,22 @@ router.get("/:id", asyncHandler( async (req, res) => {
 }));
 
 
+// @description     post a single todo
+// @route           POST /api/todos/add
+// @access          public
+router.post("/add", asyncHandler( async (req, res) => {
+    
+    //console.log(req.body.title);
+    // this finds id in mongo using the todo model we created
+    const todo = await Todo.create({ title: req.body.title });
+
+    if (todo){
+        res.json(todo);
+    }
+    else {
+        res.status(500);
+        throw new Error(res.statusMessage);
+    } 
+}));
+
 export default router;
