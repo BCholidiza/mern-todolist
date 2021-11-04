@@ -1,7 +1,9 @@
 import express from "express";
+import bodyParser from "body-parser";
 import dotenv  from "dotenv";
 import connectDB from "./config/db.js";
-import { notFound, errorHandler } from "./middleware/errorMiddleware";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import todoRoutes from "./routes/todoRoutes.js"
 
 // initiate dotenv
 dotenv.config();
@@ -18,7 +20,13 @@ app.get("/", (req, res) => {
     res.send("API running");
 });
 
-app.use("/api/todo", todoRoutes);
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
+app.use("/api/todos", todoRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
