@@ -1,16 +1,18 @@
+import { TODO_LIST_REQUEST, TODO_LIST_SUCCESS, TODO_LIST_FAIL } from "../constants/todoConstants";
+
 export const todoListReducer = (state = { todos: []}, action) => {
 
     switch (action.type) {
-        case "TODO_LIST_REQUEST":
+        case TODO_LIST_REQUEST:
             return { loading: true, products: [] };
             break;
-        case "TODO_LIST_SUCCESS":
+        case TODO_LIST_SUCCESS:
             return { loading: false, products: action.payload };
             break
-        case "TOD_LIST_FAIL":
+        case TODO_LIST_FAIL:
             return { loading: false, error: action.payload };
+            break;
         default:
             return state;
-            break;
     }
 }
