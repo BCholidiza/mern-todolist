@@ -57,7 +57,8 @@ router.post("/add", asyncHandler( async (req, res) => {
 // @access          public
 router.post("/delete/:id", asyncHandler( async (req, res) => {
     
-    const todo = await Todo.findOneAndDelete(req.params.id);
+    const filter = { _id: req.params.id };
+    const todo   = await Todo.findOneAndDelete(filter);
 
     if (todo){
         res.json(todo);
