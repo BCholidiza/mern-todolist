@@ -52,4 +52,39 @@ router.post("/add", asyncHandler( async (req, res) => {
     } 
 }));
 
+// @description     post a delete request
+// @route           POST /api/todos/delete/:id
+// @access          public
+router.post("/delete/:id", asyncHandler( async (req, res) => {
+    
+    const todo = await Todo.findOneAndDelete(req.params.id);
+
+    if (todo){
+        res.json(todo);
+    }
+    else {
+        res.status(500);
+        throw new Error(res.statusMessage);
+    } 
+}));
+
+// @description     post an update request
+// @route           POST /api/todos/update/:id
+// @access          public
+router.post("/update/:id", asyncHandler( async (req, res) => {
+    
+    const filter = { _id: req.params.id };
+    const update = { title: req.body.title, isCompleted: req.body.isCompleted };
+
+    const todo = await Todo.findOneAndUpdate(filter, update);
+
+    if (todo){
+        res.json(todo);
+    }
+    else {
+        res.status(500);
+        throw new Error(res.statusMessage);
+    } 
+}));
+
 export default router;
