@@ -2,21 +2,18 @@ import './App.css';
 import AddToDo from './components/AddTodo';
 import DisplayTodo from './components/DisplayTodo';
 import FilterTodo from './components/FilterTodo';
-import React, { useState, useEffect } from 'react';
-import axios from "axios"
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { listTodos } from "./actions/todoActions"
 
 function App() {
 
-    const [todos, setTodos] = useState([]);
+    const dispatch = useDispatch()
+
     useEffect( () => {
 
-        const fetchTodos = async () => {
-
-            const { data } = await axios.get("/api/todos");
-        }
-        axios.get("api/todos");
-
-    }, []);
+        dispatch(listTodos());
+    }, [dispatch]);
 
     return (
         <div className="App">
