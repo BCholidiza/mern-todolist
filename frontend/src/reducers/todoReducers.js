@@ -4,10 +4,10 @@ export const todoListReducer = (state = { todos: []}, action) => {
 
     switch (action.type) {
         case TODO_LIST_REQUEST:
-            return { loading: true, products: [] };
+            return { loading: true, todos: [] };
             break;
         case TODO_LIST_SUCCESS:
-            return { loading: false, products: action.payload };
+            return { loading: false, todos: action.payload };
             break
         case TODO_LIST_FAIL:
             return { loading: false, error: action.payload };
