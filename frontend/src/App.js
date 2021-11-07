@@ -1,5 +1,4 @@
 import './App.css';
-
 import AddToDo from './components/AddTodo';
 import DisplayTodo from './components/DisplayTodo';
 import FilterTodo from './components/FilterTodo';

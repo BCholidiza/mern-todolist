@@ -96,7 +96,7 @@ router.post("/delete/:id", asyncHandler( async (req, res) => {
 router.post("/update/:id", asyncHandler( async (req, res) => {
     
     const filter = { _id: req.params.id };
-    const update = { title: req.body.title, isCompleted: req.body.isCompleted };
+    const update = { isCompleted: req.body.isCompleted };
 
     const todo = await Todo.findOneAndUpdate(filter, update);
 
