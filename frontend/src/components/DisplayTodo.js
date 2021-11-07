@@ -2,7 +2,7 @@ const DisplayTodo = () => {
     return (  
 
         <div className="display-todo">
-           Display To Do 
+            Display To Do
         </div>
     );
 }

@@ -1,7 +1,9 @@
 const AddToDo = () => {
+
+
     return (  
         <div className="add-todo">
-            Add To Do
+            <input className="new-todo" type='text'/>
         </div>
     );
 }

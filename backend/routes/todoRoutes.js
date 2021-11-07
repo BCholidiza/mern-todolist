@@ -13,6 +13,27 @@ router.get("/", asyncHandler( async (req, res) => {
     res.json(todo);
 }));
 
+// @description     Fetch active todos
+// @route           GET /api/todos
+// @access          public
+// using asyncHandler just in case something breaks
+router.get("/active", asyncHandler( async (req, res) => {
+
+    const filter = { isCompleted: false };
+    const todo = await Todo.find(filter);
+    res.json(todo);
+}));
+
+// @description     Fetch completed todos
+// @route           GET /api/todos
+// @access          public
+// using asyncHandler just in case something breaks
+router.get("/completed", asyncHandler( async (req, res) => {
+
+    const filter = { isCompleted: true };
+    const todo = await Todo.find(filter);
+    res.json(todo);
+}));
 
 // @description     Fetch a single todo
 // @route           GET /api/todos/:id
