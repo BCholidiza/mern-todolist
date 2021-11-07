@@ -1,29 +1,30 @@
 import './App.css';
+
 import AddToDo from './components/AddTodo';
 import DisplayTodo from './components/DisplayTodo';
 import FilterTodo from './components/FilterTodo';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { listTodos } from "./actions/todoActions"
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
 
-    const dispatch = useDispatch()
-
-    useEffect( () => {
-
-        dispatch(listTodos());
-    }, [dispatch]);
-
     return (
-        <div className="App">
-{/*             <nav className="navigation-todo">
-                 
-            </nav> */}
-            <AddToDo />
-            <DisplayTodo />
-            <FilterTodo />
-        </div>
+        <Router>
+            <div className="App">
+                <div className="content">
+                    <AddToDo />
+                    <Routes>
+                        <Route exact path="/" element={ <DisplayTodo /> } />
+                        <Route exact path="/todos/active" element={ <DisplayTodo /> } />
+                        <Route exact path="/todos/completed" element={ <DisplayTodo /> } />
+                        {/* <Route>
+                        <ClearCompletedTodo path="*" />
+                        </Route> */}
+                    </Routes>
+                    <FilterTodo />
+                </div>
+            </div>
+        </Router>
     );
 }
 
