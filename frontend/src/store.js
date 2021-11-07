@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { todoListReducer } from "./reducers/todoReducers"
 
 const reducer = combineReducers({
-    todoList: todoListReducer 
+    todoList: todoListReducer
 });
 
 const initialState = {};

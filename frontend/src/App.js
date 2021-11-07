@@ -3,7 +3,7 @@ import './App.css';
 import AddToDo from './components/AddTodo';
 import DisplayTodo from './components/DisplayTodo';
 import FilterTodo from './components/FilterTodo';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
                     <AddToDo />
                     <Routes>
                         <Route exact path="/" element={ <DisplayTodo /> } />
-                        <Route exact path="/todos/active" element={ <DisplayTodo /> } />
-                        <Route exact path="/todos/completed" element={ <DisplayTodo /> } />
+                        <Route exact path="/active" element={ <DisplayTodo /> } />
+                        <Route exact path="/completed" element={ <DisplayTodo /> } />
                         {/* <Route>
                         <ClearCompletedTodo path="*" />
                         </Route> */}

@@ -6,7 +6,7 @@ export const listTodos = (pathname) => async (dispatch) => {
     try {
         dispatch({ type: TODO_LIST_REQUEST });
 
-        const { data } = await axios.get("api/todos/" +pathname);
+        const { data } = await axios.get("api/todos" +pathname);
 
         dispatch({ type: TODO_LIST_SUCCESS, payload: data });
     } 

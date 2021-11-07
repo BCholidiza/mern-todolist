@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { listTodos, activeTodos, completedTodos } from "../actions/todoActions"
+import { listTodos } from "../actions/todoActions";
 import React, { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
