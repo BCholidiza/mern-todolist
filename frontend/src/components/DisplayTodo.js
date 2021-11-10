@@ -1,29 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import { listTodos } from "../actions/todoActions";
-import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from "react-router-dom";
-import Checked from "../icon-check.svg";
-import Unchecked from "../icon-cross.svg";
+import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const DisplayTodo = () => {
     
-    const [isCompleted, setIsCompleted] = useState({});
+    const initialRender = useRef(true);
 
     // function handles toggle of isCompleted
     const handleIsCompletedToggle = (event) => {
 
-        const id = event.target.dataset.key;
-        const isCompletedStatus = event.target.dataset.iscompleted;
-
-        console.log(id)
-        console.log(isCompletedStatus)
-        const todoCompletedStatus = { isCompleted: !isCompletedStatus };
-        setIsCompleted(todoCompletedStatus);
-        
-        // post this to backend
-        const response = async () => await axios.post(`/update/${id}`, isCompleted);
+        const selectedTodoId = event.target.dataset.key;
+        const selectedTodoCompleteStatus = { isCompleted: event.target.dataset.iscompleted === "true" ? false : true };
+        sendRequest(selectedTodoCompleteStatus, selectedTodoId);
     }
+
+    // post this to backend
+    const sendRequest = async (data, todoId) => {
+        
+        try{
+            
+            const response = await axios.post(`api/todos/update/${todoId}`, data);
+            
+            if (response.data){
+
+                dispatch(listTodos(pathname));
+            }
+        } catch {
+
+        }
+    };
 
     const pathname = useLocation().pathname;
 
@@ -46,7 +53,7 @@ const DisplayTodo = () => {
                         <li className="list-todo" data-iscompleted={ todo.isCompleted } data-key={ todo._id } 
                             key={ todo._id } 
                             style={{ textDecoration: !todo.isCompleted || "line-through" }}
-                            onClick={ e => handleIsCompletedToggle(e) }
+                            onClick={ (e) => handleIsCompletedToggle(e) }
                         >
                             { todo.title }
                         </li>) 
