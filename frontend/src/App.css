@@ -3,11 +3,11 @@
     src: url(https://fonts.google.com/specimen/Josefin+Sans);
 }
 
-/* * {
+* {
     font-family: "[Josefin Sans]";
     font-weight: 400, 700;
-    color: aqua;
-} */
+    font-size: 18px;
+}
 
 .App {
   text-align: center;
@@ -46,4 +46,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.display-todo {
+    margin: 0px auto;
+    max-width: 520px;
+}
+
+ul {
+    padding: 0;
+    border-style: solid;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+    border:none;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    list-style-type: none;
+    border:inherit;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+input {
+    margin: 20px auto;
+    border:none;
+    border-radius: 3px;
+    min-width: 500px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  }
+
+.filter-todo {
+    margin: 0px auto;
+    width: 500px;
+    padding: 10px;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+.filter-todo a {
+    margin: 0px 10px;
+    text-decoration: none;
 }

@@ -28,8 +28,8 @@ app.use(bodyParser.json());
 
 app.use("/api/todos", todoRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+//app.use(notFound);
+//app.use(errorHandler);
 
 // port to default to 5000 if there is no PORT in process environment
 const PORT = process.env.PORT || 5000
