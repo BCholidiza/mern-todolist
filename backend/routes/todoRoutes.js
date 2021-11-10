@@ -90,6 +90,23 @@ router.post("/delete/:id", asyncHandler( async (req, res) => {
     } 
 }));
 
+// @description     post a delete request
+// @route           DELETE /api/todos/remove/
+// @access          public
+router.post("/remove", asyncHandler( async (req, res) => {
+    
+    const filter = { isCompleted: true };
+    const todo   = await Todo.deleteMany(filter);
+
+    if (todo){
+        res.json(todo);
+    }
+    else {
+        res.status(500);
+        throw new Error(res.statusMessage);
+    } 
+}));
+
 // @description     post an update request
 // @route           POST /api/todos/update/:id
 // @access          public
