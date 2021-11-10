@@ -16,9 +16,7 @@ function App() {
                         <Route exact path="/" element={ <DisplayTodo /> } />
                         <Route exact path="/active" element={ <DisplayTodo /> } />
                         <Route exact path="/completed" element={ <DisplayTodo /> } />
-                        {/* <Route>
-                        <ClearCompletedTodo path="*" />
-                        </Route> */}
+                        <Route exact path="/remove"  element={ <DisplayTodo /> } />
                     </Routes>
                     <FilterTodo />
                 </div>
