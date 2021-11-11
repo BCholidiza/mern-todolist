@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { listTodos } from "../actions/todoActions";
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
 const AddToDo = () => {
@@ -18,11 +21,23 @@ const AddToDo = () => {
         }
     }
 
+    const pathname = useLocation().pathname;
+
+    const dispatch = useDispatch();
+
+    const todoList = useSelector(state => state.todoList);
+    const { loading, error, todos } = todoList;
+
     // post this to backend
     const sendPost = async (toDo) =>{
 
         try {
             const res = await axios.post("api/todos/add", toDo);
+
+            if (res.status === 200){
+
+                dispatch(listTodos(pathname));
+            }
         } catch (error) {
             console.log(error)
         }
@@ -36,7 +51,7 @@ const AddToDo = () => {
         else {
             sendPost(newTodo);  
         }
-    }, [newTodo])
+    }, [newTodo, dispatch])
 
     return (  
         <div className="add-todo">
