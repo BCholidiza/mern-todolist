@@ -48,16 +48,13 @@
   }
 }
 
-.display-todo {
-    margin: 0px auto;
-    max-width: 520px;
-}
 
 ul {
-    padding: 0;
-    border-style: solid;
+    margin: 0px auto;
+    max-width: 500px;
+    padding: 10px;
     box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-    border:none;
+    border-radius: 3px; 
 }
 
 ul li {
@@ -65,8 +62,6 @@ ul li {
     position: relative;
     padding: 10px;
     list-style-type: none;
-    border:inherit;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 }
 
 input {
@@ -78,13 +73,6 @@ input {
     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
   }
 
-.filter-todo {
-    margin: 0px auto;
-    width: 500px;
-    padding: 10px;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-    border-radius: 3px;
-}
 .filter-todo a {
     margin: 0px 10px;
     text-decoration: none;

@@ -12,7 +12,7 @@ const DisplayTodo = () => {
 
         const selectedTodoId = event.target.dataset.key;
         const selectedTodoCompleteStatus = { isCompleted: event.target.dataset.iscompleted === "true" ? false : true };
-        sendRequest(selectedTodoCompleteStatus, selectedTodoId);
+        sendRequest(selectedTodoCompleteStatus, selectedTodoId, "api/todos/update/");
     }
 
     const handleNoLeft = (todos) => {
@@ -24,11 +24,11 @@ const DisplayTodo = () => {
     }
 
     // post this to backend
-    const sendRequest = async (data, todoId) => {
+    const sendRequest = async (data, todoId, path) => {
         
         try{
             
-            const response = await axios.post(`api/todos/update/${todoId}`, data);
+            const response = await axios.post(`${path}${todoId}`, data);
             
             if (response.status === 200){
 
@@ -51,6 +51,12 @@ const DisplayTodo = () => {
         dispatch(listTodos(pathname));
     }, [dispatch, pathname]);
 
+    const handleDeleteTodoItem = (event) => {
+        
+        const selectedTodoId = event.target.dataset.key;
+        sendRequest("false", selectedTodoId, "api/todos/delete/");
+    }
+
     return (
         <div>
             <div className="display-todo">
@@ -66,7 +72,7 @@ const DisplayTodo = () => {
                                 >
                                 { todo.title }
                                 </span>
-                                <span>X</span>
+                                <button className="delete-item-todo" data-key={ todo._id } onClick={ handleDeleteTodoItem }>X</button>
                             </li>) 
                         }
                         <FilterTodo noTodoLeft={ todos.filter( (todo) => todo.isCompleted !== true) }/>
